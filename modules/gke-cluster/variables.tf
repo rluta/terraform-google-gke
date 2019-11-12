@@ -203,3 +203,15 @@ variable "secrets_encryption_kms_key" {
   type        = string
   default     = null
 }
+
+variable "enable_cloud_run" {
+  description = "Enable Cloud Run for Anthos support"
+  type        = bool
+  default     = false
+}
+
+variable "enable_istio" {
+  description = "Enable Istio support in GKE"
+  type        = bool
+  default     = false
+}

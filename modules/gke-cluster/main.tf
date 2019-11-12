@@ -12,6 +12,11 @@ terraform {
   required_version = ">= 0.12.7"
 }
 
+locals {
+  # Cloud Run needs istio so enable Istio either because it's explicitely enabled or because Cloud Run is enabled
+  enable_istio = var.enable_istio || var.enable_cloud_run
+}
+
 # ---------------------------------------------------------------------------------------------------------------------
 # Create the GKE Cluster
 # We want to make a cluster with no node pools, and manage them all with the fine-grained google_container_node_pool resource
@@ -88,6 +93,15 @@ resource "google_container_cluster" "cluster" {
     network_policy_config {
       disabled = ! var.enable_network_policy
     }
+
+    istio_config {
+      disabled = ! local.enable_istio
+    }
+
+    cloudrun_config {
+      disabled = ! var.enable_cloud_run
+    }
+
   }
 
   network_policy {
