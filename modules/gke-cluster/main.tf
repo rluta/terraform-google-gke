@@ -91,7 +91,7 @@ resource "google_container_cluster" "cluster" {
     }
 
     istio_config {
-      disabled = ! locals.enable_istio
+      disabled = ! local.enable_istio
     }
 
     cloudrun_config {
