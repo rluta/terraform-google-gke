@@ -165,6 +165,8 @@ resource "google_container_cluster" "cluster" {
       key_name = database_encryption.value
     }
   }
+
+  resource_labels = var.resource_labels
 }
 
 # ---------------------------------------------------------------------------------------------------------------------

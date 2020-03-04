@@ -215,3 +215,9 @@ variable "enable_istio" {
   type        = bool
   default     = false
 }
+
+variable "resource_labels" {
+  description = "A set of GCE resource labels used to tagging the cluster instance"
+  type        = map
+  default     = {}
+}
